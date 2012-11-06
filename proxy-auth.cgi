@@ -29,7 +29,7 @@ my $q = CGI->new();
 my $data = decode_json($q->param('POSTDATA'));
 my $url = uri_unescape($q->url(-absolute=>1));
 
-( my $email = $url ) =~ s[/users/(.*)/tokens][$1];
+( my $email = $url ) =~ s[/users/(.*)/tokens/?][$1];
 my $password = $data->{password};
 
 if (not login_ldap($email, $password)) {
